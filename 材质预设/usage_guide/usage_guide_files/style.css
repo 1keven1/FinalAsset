@@ -1,0 +1,169 @@
+@charset "utf-8";
+
+/* Main layout */
+
+body {
+	background-color: #ededed;
+}
+#wrapper {
+	position:absolute;
+	width:1080px;
+	z-index:1;
+	margin-left: -554px;
+	left: 50%;
+	background-color: #ffffff;
+	height: auto;
+}
+.page {
+	background-color: #ffffff;
+	background-repeat: repeat-y;
+	width: 1044px;
+	padding-right: 14px;
+	padding-left: 14px;
+	height: 100%;
+}
+
+.banner {
+	background-image: url(usage_guide_files/banner.jpg);
+	height: 410px;
+	width: 1044px;
+}
+
+.titleLarge {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.title {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.fig {
+	font-family: Tahoma, Verdana, Arial, sans-serif;
+	font-size: 11px;
+}
+
+/* Buttons, Nav Bar, and Logo */
+
+/*Home page variants*/
+
+#logoHome {
+	position:absolute;
+	width:92px;
+	height:36px;
+	z-index:2;
+	left: 123px;
+	top: 154px;
+}
+
+#navbar {
+	position:absolute;
+	left:359px;
+	top:314px;
+	width:auto;
+	height:17px;
+	z-index:2;
+}
+
+/*sub page variants*/
+
+#subLogoHome {
+	position:absolute;
+	width:92px;
+	height:36px;
+	z-index:2;
+	left: 123px;
+	top: 50px;
+}
+
+#subNavbar {
+	position:absolute;
+	left:309px;
+	top:84px;
+	width:auto;
+	height:17px;
+	z-index:2;
+}
+
+a.button{
+	display: block;
+	float: left;
+	width: 80px;
+	height: 16px;
+	color:#CCCCCC;
+	font:12px Tahoma, Verdana, Arial, sans-serif;
+	background:url(images/buttonBase.png);
+	border:none;
+	cursor:pointer;
+	padding-top: 1px;
+	padding-left: 12px;
+}
+a.button:hover{background-position: 0 -17px;}
+a.button:active{background-position: 0 -34px;}
+
+/* Link styles  */
+
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+
+a.a1:link {
+	color: #89755C;
+	text-decoration: underline;
+}
+a.a1:visited {
+	color: #89755C;
+}
+a.a1:hover {
+	color: #A28D75;
+	text-decoration: none;
+}
+a.a1:visited {
+	color: #89755C;
+}
+
+.copyright {
+	font-family: Tahoma, Verdana, Arial, sans-serif;
+	font-size: 11px;
+	color: #665749;
+	height: 20px;
+	width: 888px;
+}
+
+/* Portfolio thumbnails */
+
+.spacer {
+    clear: both;
+}
+
+.thumbFloat {
+    float: left;
+    margin: 10px;
+}
+  
+.thumbFloat:hover {
+    margin: 9px;
+	border: 1px solid #595251;
+	cursor: pointer;
+}
+
+/* Randoms */
+
+hr {
+	border: 0;
+	width: 100%;
+	float: left;
+	color: black;
+	background-color: black;
+	height: 1px;
+}

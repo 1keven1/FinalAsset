@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0144)file:///C:/Users/jeffh_000/Desktop/substance/substances/stylizedTileGen/usage_guide/Rolling%20Cloth%20_%20jeff%20horal%20online%20portfolio.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Stylized Tile Generator Usage Guide</title>
+
+<link href="./usage_guide_files/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.body {
+	font-family: Tahoma, Verdana, Arial, sans-serif;
+	font-size: 12px;
+	padding: 18px;
+	height: auto;
+	width: 1044px;
+}
+-->
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+
+  <div class="body">
+    <div align="left" class="titleLarge">Stylized Tile Generator - Usage Guide</div><br>by Jeff Horal</br>
+	<p align="center"><img src="./usage_guide_files/banner.jpg" width="1044" height="396"></p>
+	<hr>
+    <br>
+      <p align="left" class="title">Starting a new Texture:</p>
+	  <p align="left">Stylized Tile Generator is designed to start with a basic luminance map without any predefined edges or cracks between the tiles -  this gives full control of the edge thickness as the luminance map will generate its own cracks between shapes of different values. A luminance map with cracks between tiles will still function correctly, however you won't be able to set the width of the cracks to any lower than the basic luminance input map already includes. Do not use a luminance map with any slope information, as this will create unpredictable results. If you want to include extra slope/height information use 'Generate Sloping' or the 'Height Map' input (or both!).</p>
+	  <p align="left">Stylized texture generator is designed to use a 'large to small' workflow, wherein you start with the big shapes, and slowly add detail as needed. It may be tempting to turn on every component of Stylized Texture Generator, but keep in mind that performance will drop with each component that is activated, so it is best to use only the features that your texture calls for. The recommended way to create a finished texture is to work your way down in order through the different tabs, turning on only the features that you need. If performance is low or you want to experiment, you can turn off components temporarily to speed up perfomance, and then turn them back on later without losing any of your settings. </p>
+	  <p align="left">At first you should focus only on the input pattern, the 'Height' tab, and the 'Edges' tab to see how the scale of your input luminance map is working. Once you are satisfyed with the large scale shape of your tiles and its basic edge details, you can continue down the tabs.</p>
+	  <p align="left">It is recommended when starting off to set the parent resolution to 1024. This will dramatically speed up performance while doing your first pass. After you feel your texture is mostly complete, then increase resolution up it to 2048 or 4096 and make any necessary tweaks before rendering the final outputs.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Height Tab:</p>
+	  <p align="left"><b>Offset By Luminance Map</b> - Uses the source luminance mask to offset height of tiles. Useful for when an extra height map isn't necessary.</p>
+	  <p align="left"><b>Luminance Range</b> - Sets the range of the luminance offset.</p>
+	  <p align="left"><b>Generate Sloping</b> - Uses a flood fill node to fill pattern shapes with a gradient. Note that you can use more than one slope to create large-scale faceting effects.</p>
+	  <p align="left"><b>Slope Direction</b> - Sets the direction of slopes to horizontal + vertical, horizontal only, vertical only, or random in all 360 degrees. Random +1/2/3 will add extra gradients to tiles, creating sculptural effects.</p>
+	  	  	  <p align="left"></p>
+      <p align="left"><img src="./usage_guide_files/sloping_random_3.jpg" width="1044" height="488"></p>
+      <p align="center" class="fig">An example of Slope Direction set to "Random +3".</p>
+	  <p align="left"><b>Slopes Blend Type</b> - Sets the blend mode of the generated slopes. Try using different blend modes to see which is working best with your luminance map. Note: if no other 'Height Map' or 'Luminance Offset' are being used, 'Add' and 'Overlay' will have no visible effect - try raising 'Luminance Offset' if this occurs or use 'Multiply' (will only take away height from the overall texture) or 'Add/Sub' (both adds and takes away, giving the most extreme results.)</p>
+	  <p align="left"><b>Slopes Opacity</b> - Sets the opacity of all sloping effects.</p>
+	  <p align="left"><b>Slopes Mask High</b> - Sets the high value of the mask range that Sloping will appear. Note: Make sure this is always higher than the Mask Low value, or else no slopes will appear. Wider ranges between Mask Low and Mask High will produce more slopes.</p>
+	  <p align="left"><b>Slopes Mask Low</b> - Sets the low value of the mask range that Sloping will appear. Note: Make sure this is always lower than the Mask High value, or else no slopes will appear. Wider ranges between Mask Low and Mask High will produce more slopes.</p>
+	  <p align="left"><b>Slopes Mask Contrast</b> - Set the contrast of the Slopes mask. Lower values soften the mask.</p>
+	  <p align="left"><b>Use Custom Curve</b> - Activates a custom curve input to give more control to the shape of sloping.</p>
+	       <p align="left"><img src="./usage_guide_files/sloping_customCurve.jpg" width="1044" height="488"></p>
+      <p align="center" class="fig">A custom curve input creates a soft bell shape to tiles.</p>
+	  <p align="left"><b>Use Height Map</b> - Opens an input for a separate height map. Height can be used to add slope, macro shapes, patterns, and other details that do not to appear as a separate tile. Height map is calculated after the base tiles and will not affect the main tile shapes.</p>
+	  <p align="left"><b>Height Map Blend Type</b> - Sets the blend mode of the height map. Inputs: Add, Subtract, Multiply, Overlay.</p>
+	  <p align="left"><b>Height Map Opacity</b> - Sets the opacity of the height map.</p>
+	  	  <p align="left"></p>
+      <p align="left"><img src="./usage_guide_files/height.jpg" width="1044" height="488"></p>
+      <p align="center" class="fig">A custom height input used to create ornate designs on a section of trim.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Edges Tab:</p>
+	  <p align="left"><b>Edge Width</b> - Uses a Edge Detect node to generate lines between different values from the luminance map. High values will separate source pattern blocks farther apart. Beware: high values combined with high Edge Roundness values can push smaller shapes to black.</p>
+	  <p align="left"><b>Edge Roundness</b> - Sets the roundness value on the Edge Detect node. Note: high values can push smaller shapes to black.</p>
+	  <p align="left"><b>Edge Bevel Distance</b> - Sets the value of the Bevel node used to generate slopes around edges. Very small negative values are usually used.</p>
+	  <p align="left"><b>Use Edge Noise</b> - Adds an effect that uses a noise texture to create stylized edges.</p>
+	  <p align="left"><b>Edge Noise Intensity</b> - Sets the intensity of the edge noise effect. Edge noise is an additive process, so high intensity tightens edges closer together while creating more sculptural edges. Setting the Bevel Distance to a lower position will allow for higher Edge Noise Intensity while still leaving gaps between tiles. </p>
+	  <p align="left"><b>Edge Noise Distance</b> - Provides additional control for thickness of edge nosie. Lower values tighten edges, higher values push apart edges.</p>
+	  <p align="left"><b>Edge Noise Scale</b> - Sets the scale of the noise map used for Edge Noise. Higher values will create higher frequency edge noise.</p>
+		<p align="left"></p>
+      <p align="left"><img src="./usage_guide_files/edgeNoise_scale.jpg" width="1044" height="488"></p>
+      <p align="center" class="fig">Edge Noise Scale set to a value of 10 (left) and a value of 30 (right)</p>
+	  <p align="left"><b>Use Slope Blur</b> - Adds a slope blur to edges.</p>
+	  <p align="left"><b>Slope Blur Map</b> - Choose between different input maps or create a custom input for Slope Blur.</p>
+	  <p align="left"><b>Slope Blur Intensity</b> - Sets the intensity value of the slope blur node.</p>
+	  <p align="left"><b>Slope Blur Mode</b> - Set the mode of the slope blur node. Inputs: Blur - warps edges, Min - takes chunks out of edges, Max - adds chunks to edges.</p>
+	  <p align="left"><b>Slope Blur Soften</b> - Softens to slope blur map, reducing the frequency of effects.</p>
+	  <p align="left"><b>Use Corner Chip (Advanced)</b> - Adds additional advanced controls for corner chips and creates a corresponding output to visualize the corner chip mask.</p>
+	  <p align="left">NOTE: Values are dependent on scale of pattern shapes, Edge Width, and Edge Roundness. Requires careful tuning of Low Clip, High Clip, and Mask Size to produce proper corner chips. Use the corresponding output mask to tune values until only corners are visible.</p>
+	  <p align="left"><b>Corner Chip Mask Size</b> - Sets the overall size of the mask for edge corners.</p>
+	  <p align="left"><b>Corner Chip Mask Low Clip</b> - Sets the low value that corner warping appears. Warning: If level is too low corner warping may not appear at all. NOTE: Use corresponding output mask to visualize.</p>
+	  <p align="left"><b>Corner Chip Mask High Clip</b> - Sets the high value that corner warping appears. Warning: If level is too high warping will appear in all cracks. NOTE: Use corresponding output mask to visualize.</p>
+	  <p align="left"><b>Corner Chip Opacity</b> - Sets the opacity of corner chips.</p>
+	  <p align="left"><b>Edge Depth</b> - Sets the depth of edges. Warning: artifacts can occur when using values less than '1'.  Use 'Soften Cavities' if this occurs.</p>
+	  <p align="left"><b>Soften Cavities</b> - Prevents artifacts in cavities. Note: 'Soften Cavities' is often not necessary when using 'Cavity Material'.</p>
+	  <p align="left"><b>Soften Cavities Intensity</b> - Sets the intensity of the blur node used for Soften Cavities. </p>
+	  <p align="left"><b>Soften Edges</b> - Softens edges.</p>
+	  <p align="left"><b>Soften Edges Intensity</b> - Sets the size of the softening effect on hard edges.</p>
+	  <p align="left"><b>Soften Edges Opacity</b> - Sets the opacity of the softened edges over the hard edges.</p>
+	  <p align="left"><b>Edge Dilate</b> - Tightens final edge result.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Cracks Large Tab:</p>
+		<p align="left"></p>
+      <p align="left"><img src="./usage_guide_files/large_cracks.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Large cracks fully separate tiles.</p>
+	  <p align="left"><b>Cracks Large</b> - Activates large cracks. Large cracks will fully separate tiles in multiple pieces, so all parameters under the "Edges' tab will apply to the new tiles that are created by large cracks. Note: this differs from the 'Cracks Small' tab, wherein cracks are generated as surface detail only, and do not fully separate tiles into multiple pieces.</p>
+	  <p align="left"><b>Cracks Large Width</b> - Sets the base width of Large Cracks. Note: The final width of cracks is still affected by 'Edge Bevel Distance', 'Edge Noise', 'Slope Blur', and 'Corner Chip' parameters under the "Edges" tab.</p>
+	  <p align="left"><b>Cracks Large Roundness</b> - Sets the roundness of Large Cracks. Note: If using high X and Y amounts, high Roundness values can cause large areas to drop out.</p>
+	  <p align="left"><b>Cracks Large Type</b> - Sets the type of Large Cracks to either 1: Directional (cracks appear only in a specified direction, usful for horizontal bricks or patterns where cracking in all directions may cause weird shapes) or 2: Omni (cracks will appear in web-like patterns in all directions)</p>
+	  <p align="left"><b>Cracks Large Mask Low</b> - Sets the low value of the mask range that Cracks Large appear. Note: Make sure this is always lower than the Mask High value, or else no cracks will appear. Wider ranges between Mask Low and Mask High will produce more cracks.</p>
+	  <p align="left"><b>Cracks Large Mask High</b> - Sets the high value of the mask range that Cracks Large appear. Note: Make sure this is always higher than the Mask Low value, or else no cracks will appear. Wider ranges between Mask Low and Mask High will produce more cracks.</p>
+	  <p align="left"><b>Cracks Large X Amount</b> - Controls how many large cracks are generated on the X Axis.</p>
+	  <p align="left"><b>Cracks Large Y Amount</b> - Controls how many large cracks are generated on the Y Axis.</p>
+	  <p align="left"><b>Cracks Large Rotation</b> - Rotates large cracks in increments of 45 degrees via a Safe-Transform node.</p>
+	  <p align="left"><b>Cracks Large Warp Intensity</b> - Controls the intensity of the warp used to add more shape to large cracks.</p>
+	  <p align="left"><b>Crack Large Warp Scale</b> - Low values produce softer shapes to large cracks, higher values will add more high-frequency angular shapes.</p>
+	  <p align="left"><b>Cracks Large Dilate</b> - Tightens final Crack Large result. Note: High values can cause artifacts.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Surface Tab:</p>
+	  <p align="left"><b>Sculpting</b> - Adds large scale surface details.</p>
+	  <p align="left"><b>Sculpting Type</b> - Choose from multiple surface sculpting types, or create your own! <p style="text-indent: 40px">1: Chunky - Combination of softer large scale shapes with detailed angular smaller chips. Produces a fairly realistic effect.</p><p style="text-indent: 40px">2: Angular - Highly stylized with crisp edges and sharp angles.</p><p style="text-indent: 40px">3: Scalloped - Wavy shapes with terracing layers.</p><p style="text-indent: 40px">4: Custom - Make your own! Note: Custom sculpting maps do not need to be manually offset by tile shapes via the traditional directional warp by luminance map - this is already done under-the-hood for you.</p></p>
+	  		<p align="left"></p>
+      <p align="left"><img src="./usage_guide_files/sculpting.jpg" width="1044" height="351"></p>
+		<p align="center" class="fig">Chunky (left), Angular (middle), Scalloped (right).</p>
+	  <p align="left"><b>Blend Mode</b> - Sets the blend mode for the Sculpting Type.  I often find that 'Subtract' works best, but each blend mode can produce fairly different results, so experiment!</p>
+	  <p align="left"><b>Tile Seed</b> - Moves the basic sculpting shapes around to create different iterations. Note: Does not appear when using a 'Custom' sculpting map.</p>
+	  <p align="left"><b>Noise Seed</b> - Changes the 'Disorder' values of the source noise nodes used to generate surface sculpting. Note: Does not appear when using a 'Custom' sculpting map.</p>
+	  <p align="left"><b>Scale</b> - Changes the scale of the surface sculpting. Higher numbers produce higher frequency results. Note: Does not appear when using a 'Custom' sculpting map.</p>
+	  <p align="left"><b>Slope Blur</b> - Adds a slope blur to surface sculpting. Useful for adding extra detail for more realistic results.</p>
+	  <p align="left"><b>Slope Blur Intensity</b> - Controls the intensity of the slope blur.</p>
+	  <p align="left"><b>Slope Blur Scale</b> - Controls the scale of the map used for the slope blur. Higher values produce softer results.</p>
+	  <p align="left"><b>Slope Blur Soften</b> - Softens the shapes created by slope blur.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Edge Chips Tab:</p>
+	  		<p align="left"></p>
+      <p align="left"><img src="./usage_guide_files/edgeChips.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Edge chipping along edges using Edge Chips.</p>
+	  <p align="left"><b>Edge Chips</b> - Generates chips along convex edges.</p>
+	  <p align="left"><b>Threshold</b> - Controls the threshold on how intense an edge convexity needs to be to generate edge chips. Lower values produce more edge chips.</p>
+	  <p align="left"><b>Edge Chip Amount</b> - Controls how many edge chips are generated. Higher values produce more edge chips.</p>
+	  <p align="left"><b>Edge Chip Scale</b> - Sets the size of the individual edge chips.</p>
+	  <p align="left"><b>Edge Chip Scale Random</b> - Randomizes the scale of edge chips. Note: Higher values tend to shrink the size of edge chips - increase 'Edge Chip Scale' to compensate.</p>
+	  <p align="left"><b>Edge Chip Curve</b> - Curves the shape of edge chips. Positive values produce softer chips, negative produce sharper chips.</p>
+	  <p align="left"><b>Edge Chip Soften</b> - Softens the overall edge chip effect.</p>
+	  <p align="left"><b>Edge Chip Opacity</b> - Controls the overall opacity of edge chips.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Large Pitting Tab:</p>
+	  		<p align="left"></p>
+      <p align="left"><img src="./usage_guide_files/large_pits.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Large Pitting offers detailed control of shape, slope, and terracing.</p>
+	  <p align="left"><b>Large Pitting</b> - Creates large pits on the surface of tiles.</p>
+	  <p align="left"><b>Large Pitting Amount</b> - Controls how many large pits are generated.</p>
+	  <p align="left"><b>Large Pitting Scale</b> - Controls the scale of the individual large pits. Higher values create more large pits.</p>
+	  <p align="left"><b>Large Pitting Scale Random</b> - Randomizes the scale of large pits. Note: Higher values tend to shrink the size of pits - increase 'Large Pitting Scale' to compensate.</p>
+	  <p align="left"><b>Large Pitting Slope Distance</b> - Sets the distance of the slope that is created around large pits.</p>
+	  <p align="left"><b>Large Pitting Color Random</b> - Randomized the opacity of large pits.</p>
+	  <p align="left"><b>Large Pitting Warp</b> - Warps large pits to break up repetition/regularity.</p>
+	  <p align="left"><b>Large Pitting Opacity</b> - Sets the overall opacity of large pitting.</p>
+	  <p align="left"><b>Large Pitting Terracing</b> - Adds a terracing effect to large pits.</p>
+	  <p align="left"><b>Terracing Level Count</b> - Controls how many levels of terracing are generated.</p>
+	  <p align="left"><b>Terracing Soften</b> - Softens the edges created by terracing.</p>
+	  <p align="left"><b>Terracing Opacity</b> - Controls the overall opacity of terracing on large pits.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Small Pitting Tab:</p>
+	  	  		<p align="left"></p>
+      <p align="left"><img src="./usage_guide_files/small_pits.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Small Pitting provides simpler small-scale pitting effects.</p>
+	  <p align="left"><b>Small Pitting</b> - Creates simple small pits.</p>
+	  <p align="left"><b>Small Pitting Amount</b> - Controls how many small pits are generated. Higher values create more small pits.</p>
+	  <p align="left"><b>Small Pitting Scale</b> - Controls the scale of the individual small pits. Higher values create more small pits.</p>
+	  <p align="left"><b>Small Pitting Scale Random</b> - Randomizes the scale of small pits. Note: Higher values tend to shrink the size of pits - increase 'Small Pitting Scale' to compensate.</p>
+	  <p align="left"><b>Small Pitting Opacity</b> - Controls the overall opacity of small pits.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Cracks Small Tab:</p>
+	  <p align="left"><b>Cracks Small</b> - Adds small cracks that appear on the surface of tiles.</p>
+	  <p align="left"><b>Cracks Small Mask Low</b> - Sets the low value of the mask range that Cracks Small appear. Note: Make sure this is always lower than the Mask High value, or else no cracks will appear. Wider ranges between Mask Low and Mask High will produce more cracks.</p>
+	  <p align="left"><b>Cracks Small Mask High</b> - Sets the high value of the mask range that Cracks Small appear. Note: Make sure this is always higher than the Mask Low value, or else no cracks will appear. Wider ranges between Mask Low and Mask High will produce more cracks.</p>
+	  <p align="left"><b>Cracks Small X Amount</b> - Controls how many small cracks are generated on the X Axis.</p>
+	  <p align="left"><b>Cracks Small Y Amount</b> - Controls how many small cracks are generated on the Y Axis.</p>
+	       <p align="left"><img src="./usage_guide_files/cracksSmall.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Cracks Small with X Amount set to 12 and Y Amount set to 6.</p>
+	  <p align="left"><b>Cracks Small Width</b> - Sets the width of small cracks.</p>
+	  <p align="left"><b>Cracks Small Roundness</b> - Sets the roundness of small cracks where they intersect.</p>
+	  <p align="left"><b>Cracks Small Warp</b> - Controls the intensity of the warp used on small cracks.</p>
+	  <p align="left"><b>Cracks Small Slope Blur</b> - Controls the intensity of the slope blur used to give detail to small cracks.</p>
+	  <p align="left"><b>Cracks Small Opacity</b> - Controls the overall opacity of small cracks.</p>
+	  <p align="left"><b>Cracks Small Dilate</b> - Pushes small cracks closer together. Note: High values can produce artifacts.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Warp tab:</p>
+	  <p align="left"><b>Warp</b> - Warps the final tile result to break up straight angles and regular shapes.</p>
+	  <p align="left"><b>Warp Noise Input</b> - Choose between two noise map inputs for warping.<p style="text-indent: 40px">-Perlin Blend - a soft noise that creates smooth bending.</p><p style="text-indent: 40px">-Crystal Blend - an angular map that creates stylized hard bending.</p></p>
+	  <p align="left"><b>Warp Intensity</b> - Sets the intensity of the warp.</p>
+	    	  		<p align="left"></p>
+      <p align="left"><img src="./usage_guide_files/warp.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">"Crystal Blend" with an Intensity of 30.</p>
+	  <p align="left"><b>Warp Noise Scale</b> - Sets the scale of the noise map. Higher values produce higher frequency results.</p>
+	  <p align="left"><b>Warp Corner Chip Masking</b> - Adds extra control from the "Corner Chip (advacned)" parameter under the Edges tab. When activated and properly tuned, will bend tiles around corners.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Cavity Material Tab:</p>
+	  <p align="left"><b>Cavity Material</b> - Creates a new material completely separate to tiles that gathers in cavities.</p>
+	  <p align="left"><b>Cavity Material Type</b> - Sets the type of height map to use in the cavity regions.<p style="text-indent: 40px">1: Grout - A simple gritty height map usful for grout or mortar style materials.</p><p style="text-indent: 40px">2: Sand - A wavy height map useful for sand and dirt materials.</p><p style="text-indent: 40px">3: Dirt - A splotchy height map useful for dirt and other organic materials.</p><p style="text-indent: 40px">4: Moss - A lumpy height map useful for moss and other organic materials.</p><p style="text-indent: 40px">5: Custom - Input your own custom height map to use for the Cavity Material.</p></p>
+	  <p align="left"><b>Tile Cavity Material</b> - Sets the tiling rate of cavity material in multiples of 1 (via Safe Transform).</p>
+	  <p align="left"><b>Direction</b> - Sets the direction type of the cavity material.<p style="text-indent: 40px">Flat - For use of floors where cavity material collects equally in all directions.</p><p style="text-indent: 40px">Directional - For use on walls where cavity material collects only on top or below protruding tiles.</p></p>
+	       <p align="left"><img src="./usage_guide_files/cavity_direction.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Direction set to "Directional" collect sand on top of protruding bricks (left), set to "Flat" collects sand equally across tiles (right).</p>
+	  <p align="left"><b>Angle</b> - Sets the angle that Cavity Material collects. Only applies when using 'Directional' Direction type.</p>
+	  <p align="left"><b>Mask Depth</b> - Sets the depth at which Cavity Material is generated. Higher numbers moves the cavity material higher up through tiles.</p>
+	  <p align="left"><b>Mask Contrast</b> - Controls the contrast of the overall cavity mask. Higher values produce sharper edges, lower values produce softer edges.</p>
+	  <br>
+	  <p align="left"><b>Use Threshold </b>- Creates a threshold effect that expands cavity material outward while breaking up the shape by the height information from the Cavity Material type.</p>
+	  <p align="left"><b>Threshold Distance</b> - Sets the distance the of the cavity material threshold. Higher values extend the Cavity Material further.</p>
+	  <p align="left"><b>Threshold Intensity</b> - Controls how much the cavity material texture influences the threshold mask. Higher values break up the threshold mask more.</p>
+	  <p align="left"><b>Threshold Soften</b> - Softens the shape of the threshold mask.</p>
+	  <p align="left"><b>Threshold Position</b> - Sets the cutoff position of the Cavity Material Threshold. Higher values expand the Cavity Material Threshold mask.</p>
+	  <p align="left"><b>Threshold Contrast</b> - Set the contrast of the Cavity Material Threshold mask. Higher values produce sharper edges, lower values produce softer edges.</p>
+	  <p align="left"><b>Threshold Opacity</b> - Sets the opacity of the thresholded part of Cavity Material only.</p>
+	  <br>
+	  <p align="left"><b>Add AO Mask</b> - Uses ambient occlusion to generate additional cavity material. This is ideal for cavities and surface detail that lies above the base Cavity Material Depth.</p>
+	  <p align="left"><b>Occlusion Mask Depth</b> - Sets the depth value on occlusion generated areas not affected by the 'Height' value.</p>
+	  <p align="left"><b>Occlusion Mask Radius</b> - Sets the radius value on occlusion generated areas not affected by the 'Height' value.</p>
+	  <p align="left"><b>Occlusion Mask Opacity</b> - Sets the opacity of occlusion generated areas not affected by the 'Height' value.</p>
+	  <br>
+	  <p align="left"><b>Fill Intensity</b> - Controls the intensity of the non-uniform blur used to 'fill' cavity areas. Lower values will leave more of underlying tile surface details intact, while higher values will completely replace the underlying tile detail with only height information from the Cavity Material.</p>
+	       <p align="left"><img src="./usage_guide_files/cavity_fillIntensity.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">A Fill Inensity of 1 (left) and 3 (right).</p>
+	  <p align="left"><b>Threshold Fill Intensity</b> - Controls how much the threshold mask contributes to the 'Fill Intensity' value set above. Lower values will reduce potentially un-wanted warping effects on surrounding tiles.</p>
+	  <p align="left"><b>Cavity Material Opacity</b> - Controls the overall opacity of cavity material. Usually should be left at 1 unless doing a light layer of sand or something similar.</p>
+	  <p align="left"><b>Texture Height Opacity</b> - Controls how much of the cavity material texture contributes to the overall height output.</p>
+	  <br>
+	  <p align="left"><b>Height Offset</b> - Activates height offset controls to the cavity material.</p>
+	  <p align="left"><b>Height Offset Type</b> - Offsets the overall height of the cavity material.<p style="text-indent: 40px">Convex: Puffs cavity material outward, useful for adding more volume to cavity material.</p><p style="text-indent: 40px">Concave: Sinks cavity material inward, useful for smooth grout and sand.</p></p>
+	  <p align="left"><b>Height Offset Size</b> - Sets the size of the bevel used to generate cavity material height offset.</p>
+	  <p align="left"><b>Height Offset Opacity</b> - Sets the opacity of the concave/convexity effect from height offset.</p>
+	       <p align="left"><img src="./usage_guide_files/cavity_heightOffset.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Height Offset set to Concave (left) and Convex (right).</p>
+	  
+	  <p align="left"><b>Extra Mask</b> - Add a custom grayscale map to further control the Cavity Material mask.</p>
+	  <p align="left"><b>Extra Mask Blend Type</b> - Sets the blend type of Extra Mask to either 1: Add, or 2: Multiply.</p>
+	  <p align="left"><b>Extra Mask Opacity</b> - Sets the opacity of Extra Mask.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Rocks Tab:</p>
+	  	       <p align="left"><img src="./usage_guide_files/rocks.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Large and small rocks masked to Cavity Material.</p>
+	  <p align="left"><b>Rocks Large</b> - Create large rocks across tiles.</p>
+	  <p align="left"><b>Rocks Large Amount</b> - Controls how many large rocks are generated. Higher values produce more rocks.</p>
+	  <p align="left"><b>Rocks Large Scale</b> - Controls the overall scale of large rocks.</p>
+	  <p align="left"><b>Rocks Large Scale Random</b> - Randomizes the scale of large rocks. Note: Higher values tend to shrink the size of rocks - increase 'Rocks Large Scale' to compensate.</p>
+	  <p align="left"><b>Rocks Large Cavity Threshold</b> - Controls how much the Tiles/Cavity Map affects generating of Rocks Large. Higher values create more rocks.</p>
+	  <p align="left"><b>Use Custom Large Rocks</b> - Activate 3 custom inputs for Large Rocks.</p>
+	  <p align="left"><b>Rocks Small</b> - Create small rocks across tiles.</p>
+	  <p align="left"><b>Rocks Small Amount</b> - Controls how many small rocks are generated. Higher values produce more rocks.</p>
+	  <p align="left"><b>Rocks Small Scale</b>  - Controls the overall scale of small rocks.</p>
+	  <p align="left"><b>Rocks Small Scale Random</b> - Randomizes the scale of small rocks. Note: Higher values tend to shrink the size of rocks - increase 'Rocks Small Scale' to compensate.</p>
+	  <p align="left"><b>Rocks Small Cavity Threshold</b> - Controls how much the Tiles/Cavity Map affects generating of Rocks Sarge. Higher values create more rocks.</p>
+	  <p align="left"><b>Use Custom Small Rocks</b> - Activate 2 custom inputs for Small Rocks.</p>
+	  <p align="left"><b>Mask to Tiles</b> - Controls the amount tiles add to the mask for generating rocks. Higher values will generate ore rocks on tiles.</p>
+	  <p align="left"><b>Mask to Tiles Invert</b> - Inverts the Tiles Mask, generating rocks in areas between tiles.</p>
+	  <p align="left"><b>Mask to Cavity Material</b> - Controls the amount the Cavity Material adds to the mask for generating rocks. Higher values will generate more rocks on the Cavity Material.</p>
+	  <p align="left"><b>Mask to Cavity Material Invert</b> - Inverts the Cavity Material Mask, generating rocks on areas not covered by Cavity Material.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Grass Tab:</p>
+	  <p align="left"><b>Grass</b> - Creates clumps of grass on top of the Cavity Material or in cavities.</p>
+	  <p align="left"><b>Generate Unique Clumps</b> - Blades of grass are created individually based on clump locations, creating unique patterns of grass blades at each clump. If left 'False', grass will use repeats of 4 pre-composed grass clump shapes. Note: When using 'Custom' Grass Shapes along with 'Generate Unique Clumps', only individual blades of grass should be used as inputs, as opposed to pre-composed grass clumps when this feature is left false.</p>
+	  	       <p align="left"><img src="./usage_guide_files/grass.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Generate Unique Clumps set to True (left) and set to False (right).</p>
+	  <p align="left"><b>Grass Clump Amount</b> - Controls the total number of grass clumps.</p>
+	  <p align="left"><b>Grass Clump Size</b> - Controls the overall scale of grass clumps.</p>
+	  <p align="left"><b>Grass Blades Amount</b> - Controls how many blades of grass are generated per clump. Note: When using Custom grass shape inputs, this will only function if 'Generate Unique Clumps' is True.</p>
+	  <p align="left"><b>Grass Blades Size</b> - Controls the X and Y scale of the individual grass blades.<br>Note: When using Custom grass shape inputs, this will only function if 'Generate Unique Clumps' is True.</br><br>Note: High values may cause grass shapes to be clipped when not using 'Unique Clumps' - in this case, use these values only for changing the proportions of the grass shapes and adjust 'Clump Size' for overall scaling.</br></p>
+	  <p align="left"><b>Height</b> - Controls how much the grass contributes to the final height map.</p>
+	  <p align="left"><b>Directional</b> - Grass clumps will generate in a specific direction, rather than splayed out flat. Good for wall materials where grass usually grows upward.</p>
+	  <p align="left"><b>Directional Intensity</b> - Controls how pronounced the directional effect is.</p>
+	  <p align="left"><b>Shape A-D</b> - Choose between Grass, Clover, or Custom grass shapes. Note: when using 'Generate Unique Clumps' combined with a 'Custom' shape, input only a single blades of grass. When using default clumps and a 'Custom' shape, input fully composed grass clumps.</p>
+	  <p align="left"><b>Mask To Tiles</b> - Controls the amount tiles add to the mask for generating grass. Higher values will generate more grass on tiles.</p>
+	  <p align="left"><b>Mask To Tiles Invert</b> - Inverts the Tiles Mask, generating grass in areas between tiles.</p>
+	  <p align="left"><b>Mask To Cavity Material</b> - Controls the amount the Cavity Material adds to the mask for generating grass. Higher values will generate more grass on the Cavity Material.</p>
+	  <p align="left"><b>Mask To Caviy Material Invert</b> - Inverts the Cavity Material Mask, generating rocks on areas not covered by Cavity Material.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Normal Tab:</p>
+	  <p align="left"><b>Tile Intensity</b> - Controls how strong the normal map is for the base tiles.</p>
+	  <p align="left"><b>Tile Shale Overlay</b> - Overlays a 'shale' or flakey type texture to add extra surface detail.</p>
+	  <p align="left"><b>Tile Rough Noise Overlay</b> - Overlays a rough noise texture to add extra surface detail.</p>
+	  <p align="left"><b>Cavity Material Intensity</b> - Controls the normal intenstiy of the cavity material texture.</p>
+	  <p align="left"><b>Grass Blade Intensity</b> - Controls the normal intensity of individual grass blades.</p>
+	  <p align="left"><b>Grass Clump Intensity</b> - Controls the normal intensity of the overall grass clump shapes.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Diffuse Tab:</p>
+	  <p align="left"><b>Diffuse</b> - Activate diffuse colors.</p>
+	  <p align="left"><b>Base Range</b> - Sets the base grayscale range that all color gradients use. Higher values will use a wider range of colors, often creating more overall contrast.</p>
+	  <p align="left"><b>Base Position</b> - Set the base grayscale position that all color gradients use. Lower values will shift colors down the color gradient, High values will shift colors up the gradient.</p>
+	  <p align="left"><b>Luminance Offset</b> - Offsets the color gradient by the original luminance mask input, creating more color variation between tiles.</p>
+	  	       <p align="left"><img src="./usage_guide_files/luminanceOffset.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Luminance Offset set to 1 (left) and 0 (right).</p>
+	  <p align="left"><b>Edge Highlight Threshold</b> - Controls the threshold for edge highlights. Higher values will create sharper, smaller edge highlights.</p>
+	  <p align="left"><b>Edge Highlight Contrast</b> - Controls the contrast of edge highlights. Higher values create sharper edge highlights.</p>
+	  <p align="left"><b>Edge Highlight Soften</b> - Blurs the final result of edge highlights.</p>
+	  <p align="left"><b>Edge Highlight Breakup</b> - Breaks up edge highlights to reduce uniformity.</p>
+	  <p align="left"><b>Edge Highlight Opacity</b> - Controls the overal opacity of edge highlights.</p>
+	  	       <p align="left"><img src="./usage_guide_files/edgeHighlights.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Edge Highlights set to 1 (left) and .25 (right).</p>
+	  <p align="left"><b>Polish Size</b> - Sets the size of the polish effect that creates a soft glow in center of tiles.</p>
+	  <p align="left"><b>Polish Opacity</b> - Controls the opacity of the polish effect.</p>
+	  	       <p align="left"><img src="./usage_guide_files/polish.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Polish Size set to .35 and Polish Opacity set to 1 (left) and Polish Opacity set to 0 (right).</p>	  
+	  <p align="left"><b>Brush Stroke Opacity</b> - Controls the opacity of the brush stroke effect.</p>
+	  <p align="left"><b>Occlusion Opacity</b> - Controls how much the ambient occlusion contributes to the base input for the color gradient.</p>
+	  <p align="left"><b>Curvature Opacity</b> - Controls how much curvature contributes to the base input for the color gradient.</p>
+	  <p align="left"><b>Use Custom Diffuse Input</b> - Activate a custom diffuse input to further control the color gradient used on Tiles.</p>
+	  	       <p align="left"><img src="./usage_guide_files/customDifMask.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">A custom Diffuse Texture raises and lowers diffuse color values.</p>	  
+	  <p align="left"><b>Custom Input Opacity</b> - Controls the opacity of the custom diffuse input.</p>
+	  <p align="left"><b>Custom Input Blend Type</b> - Set the blend type for Diffuse Custom Input.</p>
+	  <p align="left"><b>Sharpen</b> - Sharpens the final diffuse result.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Diffuse - Tiles Tab:</p>
+	  <p align="left"><b>Primary Color</b> - Choose between 3 pre-made color gradients, or input a custom color gradient.</p>
+	  <p align="left"><b>Primary Color Range</b> - Sets the base input range for the primary color gradient. Higher values will use a wider range of colors, often creating more overall contrast.</p>
+	  <p align="left"><b>Primary Color Position</b> - Sets the base input range for the primary color gradient. Lower values will shift colors down the color gradient, High values will shift colors up the gradient.</p>
+	  <p align="left"><b>Secondary Color</b> - Activate a secondary color. By default, secondary color slightly alters the hue/saturation of the Primary color for select tiles. Use 'Use Custom Secondary Color' if more control is desired.</p>
+	  <p align="left"><b>Use Custom Secondary Color</b> - Input a custom secondary color gradient.</p>
+	  <p align="left"><b>Use Custom Secondary Color Mask</b> - Input a custom mask to control where secondary color appears.</p>
+	  	  	       <p align="left"><img src="./usage_guide_files/secColor_mask.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">A custom input mask used to separate primary and secondary colors.</p>	
+	  <p align="left"><b>Secondary Color Mask High</b> - Set the high value of the cutoff range where secondary color appears. Note: Does not apply to custom color masks.</p>
+	  <p align="left"><b>Secondary Color Mask Low</b> - Set the low value of the cutoff range where secondary color appears. Note: Does not apply to custom color masks.</p>
+	  <p align="left"><b>Secondary Color Range</b> - Sets the base input range for the secondary color gradient. Higher values will use a wider range of colors, often creating more overall contrast.</p>
+	  <p align="left"><b>Secondary Color Position</b> - Sets the base input range for the secondary color gradient. Lower values will shift colors down the color gradient, High values will shift colors up the gradient.</p>
+	  <p align="left"><b>Secondary Color Opacity</b> - Sets the opacity of the secondary color.</p>
+	  <p align="left"><b>Secondary Color Soften</b> - Blends the secondary color mask into surrounding tiles.</p>
+	  	  	       <p align="left"><img src="./usage_guide_files/secColor_soften.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Secondary Color Soften set to 1.</p>	
+	  <p align="left"><b>Tertiary Color</b> - Activate a tertiary color. By default, tertiary color slightly alters the hue/saturation of the Primary color for select tiles. Use 'Use Custom Secondary Color' if more control is desired.</p>
+	  <p align="left"><b>Use Custom Tertiary Color</b> - Input a custom tertiary color gradient.</p>
+	  <p align="left"><b>Use Custom Tertiary Color Mask</b> - Input a custom mask to control where tertiary color appears.</p>
+	  <p align="left"><b>Tertiary Color Mask High</b> - Set the high value of the cutoff range where tertiary color appears. Note: Does not apply to custom color masks.</p>
+	  <p align="left"><b>Tertiary Color Mask Low</b> - Set the low value of the cutoff range where tertiary color appears. Note: Does not apply to custom color masks.</p>
+	  <p align="left"><b>Tertiary Color Range</b> - Sets the base input range for the tertiary color gradient. Higher values will use a wider range of colors, often creating more overall contrast.</p>
+	  <p align="left"><b>Tertiary Color Position</b> - Sets the base input range for the tertiary color gradient. Lower values will shift colors down the color gradient, High values will shift colors up the gradient.</p>
+	  <p align="left"><b>Tertiary Color Opacity</b> - Sets the opacity of the tertiary color.</p>
+	  <p align="left"><b>Tertiary Color Soften</b> - Blends the tertiary color mask into surrounding tiles.</p>
+	  <p align="left"><b>Tiles Hue</b> - Controls the hue of the overall tile color.</p>
+	  <p align="left"><b>Tiles Saturation</b> - Controls the saturation of the overall tile color.</p>
+	  <p align="left"><b>Tiles Lightness</b> - Controls the lightness of the overall tile color.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Diffuse - Cavity Material Tab: (only visible if 'Cavity Material' is active)</p>
+	  <p align="left"><b>Cavity Material Diffuse</b> - Choose between different pre-defined color gradients for Cavity Material or input a custom gradient. Note: these are chosen independently form the 'Cavity Material Type' parameter in the separate 'Cavity Material' tab to allow for more control.</p>
+	  <p align="left"><b>Cavity Material Range</b> - Sets the base input range for the cavity material color gradient. Higher values will use a wider range of colors, often creating more overall contrast.</p>
+	  <p align="left"><b>Cavity Material Position</b> - Sets the base input range for the cavity material color gradient. Lower values will shift colors down the color gradient, High values will shift colors up the gradient.</p>
+	  <p align="left"><b>Cavity Material Hue</b> - Controls the hue of the overall cavity material color.</p>
+	  <p align="left"><b>Cavity Material Saturation</b> - Controls the saturation of the overall cavity material color.</p>
+	  <p align="left"><b>Cavity Material Lightness</b> - Controls the lightness of the overall cavity material color.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Diffuse - Rocks Tab: (only visible if 'Rocks' are active)</p>
+	  <p align="left"><b>Rocks Diffuse Color</b> - Choose between different pre-defined color gradients for Rocks or input a custom gradient.</p>
+	  <p align="left"><b>Rocks Diffuse Range</b> - Sets the base input range for the rocks color gradient. Higher values will use a wider range of colors, often creating more overall contrast.</p>
+	  <p align="left"><b>Rocks Diffuse Position</b> - Sets the base input range for the rocks color gradient. Lower values will shift colors down the color gradient, High values will shift colors up the gradient.</p>
+	  <p align="left"><b>Rocks Hue</b> - Controls the hue of the overall rocks color.</p>
+	  <p align="left"><b>Rocks Saturation</b> - Controls the saturation of the overall rocks color.</p>
+	  <p align="left"><b>Rocks Lightness</b> - Controls the lightness of the overall rocks color.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Diffuse - Grass Tab: (only visible if 'Grass' is active)</p>
+	  <p align="left"><b>Grass Diffuse</b> - Choose between different pre-defined color gradients for Grass or input a custom gradient.</p>
+	  <p align="left"><b>Grass Diffuse Range</b> - Sets the base input range for the grass color gradient. Higher values will use a wider range of colors, often creating more overall contrast.</p>
+	  <p align="left"><b>Grass Diffuse Position</b> - Sets the base input range for the grass color gradient. Lower values will shift colors down the color gradient, High values will shift colors up the gradient.</p>
+	  <p align="left"><b>Brush Stroke Opacity</b> - Overlays a brush stroke texture to break up regularity of grass diffuse.</p>
+	  <p align="left"><b>Grass Hue</b> - Controls the hue of the overall grass color.</p>
+	  <p align="left"><b>Grass Saturation</b> - Controls the saturation of the overall grass color.</p>
+	  <p align="left"><b>Grass Lightness</b> - Controls the lightness of the overall grass color.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Roughness Tab:</p>
+	  <p align="left"><b>Roughness</b> - Activates roughness.</p>
+	  <p align="left"><b>Invert</b> - Inverts roughness.</p>
+	  <p align="left"><b>Tiles Luminance Offset</b> - Controls how much the base luminance map offsets roughness. High values will create more roughness contrast across separate tiles.</p>
+	  <p align="left"><b>Tiles Noise Main Type</b> - Choose between 2 pre-made maps, or input a custom map that contributes to the roughness.</p>
+	  <p align="left"><b>Tiles Noise Main Opacity</b> - Sets the opacity of the Noise Main map. </p>
+	  <p align="left"><b>Tiles Noise Gritty Opacity</b> - Controls how much a high-frequency noise map contributes to roughness.</p>
+	  <p align="left"><b>Tiles Range</b> - Controls the overall range of the tiles roughness. Higher values produce more contrast between glossy and matte areas.</p>
+	  <p align="left"><b>Tiles Position</b> - Controls the overall shininess of the tiles. Higher values produce more glossy results.</p>
+	  	       <p align="left"><img src="./usage_guide_files/roughness.jpg" width="1044" height="488"></p>
+		<p align="center" class="fig">Tiles Position set to .1 (left) and .9 (right).</p>	  
+	  <p align="left"><b>Cavity Material Range</b> - Controls the overall range of the tiles roughness. Higher values produce more contrast between glossy and matte areas.</p>
+	  <p align="left"><b>Cavity Material Position</b> - Controls the overall shininess of the grass. Higher values produce more glossy results.</p>
+	  <p align="left"><b>Cavity Material Sparkle</b> - Creates a sparkle effect on Cavity Material. Useful for sand, grout, snow, etc.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">AO Tab:</p>
+	  <p align="left"><b>AO</b> - Activate ambient occlusion.</p>
+	  <p align="left"><b>Height Depth</b> - Set the depth value of the ambient occlusion node.</p>
+	  <p align="left"><b>Radius</b> - Set the radius value of the ambient occlusion node.</p>
+	  <p align="left"><b>Quality</b> - Set the quality of the ambient occlusion node.</p>
+	  <hr>
+	  <br>
+	  <p align="left" class="title">Output Masks Tab:</p>
+	  <p align="left"><b>Output masks</b> - Activate output masks for further control of individual features. Maps include: Tiles, Cavity Material, Rocks, Grass, and Luminance.</p>
+    </div>
+    
+</body></html>
